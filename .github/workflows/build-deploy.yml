@@ -26,7 +26,7 @@ jobs:
       # Install Serverless Framework
       - name: Install Serverless Framework
         run: npm install -g serverless
-          
+
       # Set the SERVERLESS_ACCESS_KEY for Serverless Framework
       - name: Set SERVERLESS_ACCESS_KEY
         run: echo "SERVERLESS_ACCESS_KEY=${{ secrets.SERVERLESS_ACCESS_KEY }}" >> $GITHUB_ENV
@@ -39,7 +39,7 @@ jobs:
       - name: Build the project
         run: dotnet build --configuration Release
 
-      # Publish the Lambda function
+      # Publish the Lambda project
       - name: Publish Lambda project
         run: dotnet publish -c Release -r linux-x64 --self-contained false -o ./publish
 
@@ -57,3 +57,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'eu-central-1'
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}  # Ensure the Serverless access key is set correctly
