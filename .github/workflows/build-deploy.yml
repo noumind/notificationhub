@@ -26,10 +26,18 @@ jobs:
       # Install Serverless Framework
       - name: Install Serverless Framework
         run: npm install -g serverless
-
+      
       # Set the SERVERLESS_ACCESS_KEY for Serverless Framework
       - name: Set SERVERLESS_ACCESS_KEY
         run: echo "SERVERLESS_ACCESS_KEY=${{ secrets.SERVERLESS_ACCESS_KEY }}" >> $GITHUB_ENV
+
+      # AWS credentials configuration
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: 'eu-central-1'
 
       # Restore dependencies
       - name: Restore dependencies
@@ -52,11 +60,6 @@ jobs:
       # Deploy Lambda with Serverless Framework
       - name: Deploy Lambda with Serverless
         run: |
-          # Unset AWS_PROFILE to avoid conflicts with environment credentials
-          unset AWS_PROFILE
           serverless deploy --stage prod
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'eu-central-1'
           SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
