@@ -2,8 +2,6 @@
 org: noumind
 service: notification-hub
 
-frameworkVersion: '4.14.2'
-
 provider:
   name: aws
   profile: my-dev-profile

@@ -1175,5 +1175,91 @@
         }
       }
     }
+  },
+  "/Users/noumanullah.qureshi/source/personal-repos/notificationhub/serverless.yml": {
+    "versionFramework": "4.14.2",
+    "servicePath": "/Users/noumanullah.qureshi/source/personal-repos/notificationhub/serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "noumind",
+      "service": "notification-hub",
+      "provider": {
+        "name": "aws",
+        "profile": "my-dev-profile",
+        "runtime": "dotnet8",
+        "region": "eu-central-1",
+        "environment": {
+          "SLACK_WEBHOOK_URL": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+        }
+      },
+      "package": {
+        "artifact": "worker.zip"
+      },
+      "functions": {
+        "webhook": {
+          "handler": "Worker::Worker.LambdaHandlers::Notify",
+          "runtime": "dotnet8",
+          "events": [
+            {
+              "http": {
+                "path": "webhook/jira",
+                "method": "post",
+                "cors": true
+              }
+            }
+          ]
+        }
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "profile": "my-dev-profile",
+      "runtime": "dotnet8",
+      "region": "eu-central-1",
+      "environment": {
+        "SLACK_WEBHOOK_URL": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+      }
+    },
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: noumind\nservice: notification-hub\n\nprovider:\n  name: aws\n  profile: my-dev-profile\n  runtime: dotnet8\n  region: eu-central-1\n  environment:\n    SLACK_WEBHOOK_URL: https://hooks.slack.com/services/YOUR/WEBHOOK/URL\n\npackage:\n  artifact: worker.zip\n\nfunctions:\n  webhook:\n    handler: Worker::Worker.LambdaHandlers::Notify\n    runtime: dotnet8\n    events:\n      - http:\n          path: webhook/jira\n          method: post\n          cors: true\n",
+    "command": [
+      "login"
+    ],
+    "options": {},
+    "orgId": "f1bbac89-de05-45be-936c-ff21db75e5a5",
+    "orgName": "noumind",
+    "userId": "kKsVl79GY0Y8ZKXXkd",
+    "userName": "noumind",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-central-1:354918385861:stack/notification-hub-dev/cb1ddf70-2915-11f0-b4ed-067e57ea8baf",
+    "serviceProviderAwsCfStackCreated": "2025-05-04T18:30:03.120Z",
+    "serviceProviderAwsCfStackUpdated": "2025-05-05T14:21:04.252Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "WebhookLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:eu-central-1:354918385861:function:notification-hub-dev-webhook:20",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-notification-hub-dev-WebhookLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServiceEndpoint",
+        "OutputValue": "https://hsl130rxvh.execute-api.eu-central-1.amazonaws.com/dev",
+        "Description": "URL of the service endpoint",
+        "ExportName": "sls-notification-hub-dev-ServiceEndpoint"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-eu-central-1-7f5dd855-25e6",
+        "ExportName": "sls-notification-hub-dev-ServerlessDeploymentBucketName"
+      }
+    ]
   }
 }
