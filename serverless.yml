@@ -7,7 +7,7 @@ provider:
   runtime: dotnet8
   region: eu-central-1
   environment:
-    SLACK__WebhookUrl: ${env:SLACK_WEBHOOK_URL}
+    Slack__WebhookUrl: ${env:SLACK_WEBHOOK_URL}
 
 package:
   artifact: ./worker.zip
