@@ -41,7 +41,7 @@ jobs:
 
       # Publish the Lambda project
       - name: Publish Lambda project
-        run: dotnet publish -c Release -r linux-x64 --self-contained false -o ./publish
+        run: dotnet publish -c Release -r linux-x64 --output ./publish
 
       # Package the Lambda function (zip the published folder)
       - name: Package the Lambda function
