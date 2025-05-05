@@ -4,7 +4,6 @@ service: notification-hub
 
 provider:
   name: aws
-  profile: my-dev-profile
   runtime: dotnet8
   region: eu-central-1
   environment:
