@@ -47,7 +47,8 @@ jobs:
       - name: Package the Lambda function
         run: |
           cd ./publish
-          zip -r ../lambda-package.zip .
+          zip -r worker.zip .
+          mv worker.zip ../
 
       # Deploy Lambda with Serverless Framework
       - name: Deploy Lambda with Serverless

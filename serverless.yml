@@ -10,7 +10,7 @@ provider:
     SLACK_WEBHOOK_URL: https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 
 package:
-  artifact: worker.zip
+  artifact: ./worker.zip
 
 functions:
   webhook:
