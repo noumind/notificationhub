@@ -1,0 +1,26 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: noumind
+service: notification-hub
+
+frameworkVersion: '4.14.2'
+
+provider:
+  name: aws
+  profile: my-dev-profile
+  runtime: dotnet8
+  region: eu-central-1
+  environment:
+    SLACK_WEBHOOK_URL: https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+
+package:
+  artifact: worker.zip
+
+functions:
+  webhook:
+    handler: Worker::Worker.LambdaHandlers::Notify
+    runtime: dotnet8
+    events:
+      - http:
+          path: webhook/jira
+          method: post
+          cors: true

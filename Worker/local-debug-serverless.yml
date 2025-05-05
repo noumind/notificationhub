@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  CreateGuid:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: NH.Worker::NH.Worker.LambdaHandlers::CreateGuid
+      Runtime: dotnet8
+      CodeUri:
+      MemorySize: 256
+      Timeout: 30
+
+  # Define other functions similarly for the remaining Lambda handlers...
