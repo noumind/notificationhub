@@ -2,6 +2,9 @@
 org: noumind
 service: notification-hub
 
+plugins:
+  - serverless-dotenv-plugin
+
 provider:
   name: aws
   runtime: dotnet8
